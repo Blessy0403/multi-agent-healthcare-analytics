@@ -1,0 +1,18 @@
+# Default config schema (reference). Single source of truth: utils.config.PipelineConfig
+# Override in code or via env; YAML load can be added later.
+dataset: diabetes
+enable_baseline: true
+enable_cross_dataset: false
+explain_n: 200
+
+feedback:
+  enabled: true
+  trigger_metric: eri   # one of: fidelity, shap_stability, eri
+  threshold: 0.6
+  action: switch_model  # one of: retrain_best_model, switch_model, retrain_with_tuned_params
+
+cross_dataset:
+  enabled: false
+  target_dataset: null  # target dataset for cross-dataset validation (e.g. heart_disease); set by --cross_dataset
+  train_dataset: null   # set from run primary dataset
+  test_datasets: []     # e.g. ["heart_disease", "framingham"]
